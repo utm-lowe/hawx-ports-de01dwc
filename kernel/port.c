@@ -158,28 +158,27 @@ port_init(void)
 
     // YOUR CODE HERE
 
-    int i;
-
-    for (i = 0; i < NPORT; i++) {
-        ports[i].head = 0;
-        ports[i].tail = 0;
+    for (int i = 0; i < NPORT; i++) {
+        ports[i].head  = 0;
+        ports[i].tail  = 0;
         ports[i].count = 0;
-        ports[i].owner = -1;
-        ports[i].free = 1;
-        ports[i].type = PORT_TYPE_FREE;
+
+        ports[i].free  = 1;
+        ports[i].type  = PORT_TYPE_FREE;
+        ports[i].owner = 0;
     }
 
     ports[PORT_CONSOLEIN].free  = 0;
     ports[PORT_CONSOLEIN].type  = PORT_TYPE_KERNEL;
-    ports[PORT_CONSOLEIN].owner = -1;
+    ports[PORT_CONSOLEIN].owner = 0;
 
     ports[PORT_CONSOLEOUT].free  = 0;
     ports[PORT_CONSOLEOUT].type  = PORT_TYPE_KERNEL;
-    ports[PORT_CONSOLEOUT].owner = -1;
+    ports[PORT_CONSOLEOUT].owner = 0;
 
     ports[PORT_DISKCMD].free  = 0;
     ports[PORT_DISKCMD].type  = PORT_TYPE_KERNEL;
-    ports[PORT_DISKCMD].owner = -1;
+    ports[PORT_DISKCMD].owner = 0;
 
 }
 
@@ -200,7 +199,7 @@ port_close(int port)
     ports[port].head = 0;
     ports[port].tail = 0;
     ports[port].count = 0;
-    ports[port].owner = -1;
+    ports[port].owner = 0;
     ports[port].free = 1;
     ports[port].type = PORT_TYPE_FREE;
 
